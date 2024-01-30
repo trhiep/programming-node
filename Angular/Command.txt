@@ -1,0 +1,11 @@
+========== Angular ==========
+#. Create Angular project
+ng new my-app --no-standalone -- routing --ssr=false
+
+	* --no-standalone -- routing --ssr=false: to fix missing app.module.ts
+	* --git-skip: do not create .git for the project
+
+#. Run Angular app
+ng serve -o
+- or -
+yarn start

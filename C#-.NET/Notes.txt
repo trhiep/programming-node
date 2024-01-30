@@ -1,0 +1,38 @@
+========== C# .NET ==========
+#. Connection string:
+	"ConnectionStrings": {
+  		"DBContext": "Data Source=localhost\\SQLEXPRESS;Initial Catalog=DATABASE_NAME;User ID=***;Password=***;MultipleActiveResultSets=true"
+			}
+
+#. Context configuration
+	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+ 	{
+     		if (!optionsBuilder.IsConfigured)
+     		{
+         		var builder = new ConfigurationBuilder().
+             			SetBasePath(Directory.GetCurrentDirectory()).
+         			AddJsonFile("appsettings.json", optional: false);
+         		IConfiguration con = builder.Build();
+         		optionsBuilder.UseSqlServer(con.GetConnectionString("DBContext"));
+     		}
+ 	}
+
+#. Scaffold models from database
+	dotnet ef dbcontext scaffold "Data Source=localhost\SQLEXPRESS;Initial Catalog=DATABASE_NAME;User ID=***;Password=***" Microsoft.EntityFrameworkCore.SqlServer -o 	Models -f
+
+#. MapControllerRoute
+	app.MapControllerRoute(
+    		name: "default",
+    		pattern: "{controller=Home}/{action=Index}/{id?}");
+
+#. Implement singleton
+	public static PRN211_FA23_SE1733Context INSTANCE = new PRN211_FA23_SE1733Context();
+	public PRN211_FA23_SE1733Context()
+	{
+    		if (INSTANCE == null)
+    		{
+       			INSTANCE = this;
+    		}
+	}
+
+#. 
