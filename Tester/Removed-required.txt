@@ -1,0 +1,8 @@
+// Get all input elements
+    var inputs = document.querySelectorAll('input');
+
+    // Loop through each input element
+    inputs.forEach(function(input) {
+        // Remove the required attribute
+        input.removeAttribute('required');
+    });
